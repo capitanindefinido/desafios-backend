@@ -73,7 +73,7 @@ const fs = fileSystem.promises
 
 class ProductManagerFile {
     constructor(){
-        this.path = 'C:\Users\HP OMEN\Desktop\Curso CoderHouse\Backend Node\desafio-2'
+        this.path = 'C:\Users\HP OMEN\Desktop\Curso CoderHouse\Curso Backend Node\desafio-2'
     }
 
     static id = 0
@@ -110,10 +110,28 @@ class ProductManagerFile {
 
         return product
     }
+
+    deleteProductById = async (id) => {
+        let respuesta = await this.readFileProducts()
+        let productFilter = respuesta.filter(products => products.id != id)
+        await fs.writeFile(this.path, JSON.stringify(productFilter))
+        console.log("producto eliminado")
+    }
+
+    updateProduct = async ({id, ...producto}) => {
+        await this.deleteProductById(id)
+        let productOld = await await this.readFileProducts()
+        let productoModificado = [
+            {id, ...producto},
+            ...productOld
+        ]
+        await fs.writeFile(this.path, JSON.stringify(productoModificado))
+        console.log("producto modificado")
+    }
 }
 
 const productsFile = new ProductManagerFile
-productsFile.get()
+/* productsFile.get()
     .then(res => console.log(res))
     .catch(err => console.log(err))
 
@@ -121,7 +139,7 @@ productsFile.getProductById(1)
     .then(res => console.log(res))
     .catch(err => console.log(err))
 
-/* const producto = {
+const producto = {
     titulo: 'prod1' ,
     descripcion: 'descripcion',
     precio: 1333, 
@@ -132,4 +150,16 @@ productsFile.getProductById(1)
 
 productsFile.addProduct(producto)
     .then(res => console.log(res))
-    .catch(err => console.log(err)) */
+    .catch(err => console.log(err))  */
+
+/* productsFile.deleteProductById(1) */
+
+productsFile.updateProduct({
+    titulo: 'prod1',
+    descripcion: 'descripcion',
+    precio: 23433,
+    image: 'img',
+    codigo: 1,
+    stock: 150,
+    id: 1
+})
