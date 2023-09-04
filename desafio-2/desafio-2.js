@@ -100,8 +100,6 @@ class ProductManagerFile {
 
     get = async () => await this.readFileProducts()
 
-
-
     getProductById = async (id) => {
         const products = await this.readFileProducts()
         if(products.length === 0) return 'no hay productos'
