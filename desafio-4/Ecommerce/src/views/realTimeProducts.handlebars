@@ -1,0 +1,43 @@
+<div>
+    <div>
+        <h1>Lista de Productos con Socket</h1>
+            <div class="detalleProd">
+            <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Edad</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each products}}
+                    <tr>
+                        <td>{{this.nombre}}</td>
+                        <td>{{this.apellido}}</td>
+                        <td>{{this.edad}}</td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+            </div>
+        </div>
+    <div class="formulario">
+        <h1>Formulario Productos</h1>
+        <form id="prod-form">
+            <div class="inputs">
+                
+                <input type="text" id="nombre" autocomplete="off" placeholder="Ingrese Nombre" required>
+                <input type="text" id="apellido" autocomplete="off" placeholder="Ingrese Apellido" required>
+                <input type="text" id="edad" autocomplete="off" placeholder="Ingrese Edad" required>
+                
+            </div>
+            </div>
+            <div class="botones">
+                <button type="submit">Crear</button>
+            </div>    
+        </form>
+    </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/indexP.js"></script>

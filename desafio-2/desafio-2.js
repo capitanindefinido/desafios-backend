@@ -105,7 +105,6 @@ class ProductManagerFile {
         if(products.length === 0) return 'no hay productos'
         let product = products.find(product => product.id === id)
         if(!product) return 'No se encuentra el producto'
-
         return product
     }
 
